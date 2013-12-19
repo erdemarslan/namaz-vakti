@@ -65,6 +65,9 @@ Diyanet İşleri Başkanlığı - <a href="http://www.diyanet.gov.tr">Ziyaret Et
 Benimle iletişime geçmek için lütfen <a href="http://www.erdemarslan.com">blogumu</a> kullanınız.
 
 == Changelog ==
+= 1.1 =
+
+Widget için renk ayarı eklendi.
 
 = 1.0.2 =
 
