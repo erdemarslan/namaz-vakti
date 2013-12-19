@@ -48,6 +48,7 @@ Karþýlaþtýðýnýz hatalarda lütfen beni bilgilendiriniz.
   - http://api.eralabs.net/api-anahtari adresinden alabilirsiniz.
 
 == Screenshots ==
+
 1. Bileþen (Widget) Görüntüsü 1
 2. Bileþen (Widget) Görüntüsü 2
 3. Yönetim Paneli 1
@@ -64,13 +65,13 @@ Benimle iletiþime geçmek için lütfen <a href="http://www.erdemarslan.com">blogum
 
 == Changelog ==
 
-= 1.0 =
-Eklenti hazýrlandý.
-
 = 1.0.2 =
+
+Eklenti hazýrlandý.
 Görünüm iyileþtirmeleri yapýldý.
 
 == UPGRADE NOTICE ==
+
 * Güncelleme yok
 
 == License ==
