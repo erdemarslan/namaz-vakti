@@ -3,7 +3,7 @@ Contributors: Erdem Arslan @erdemsaid
 Tags: diyanet, namaz, ezan, vakit, muslim, islam, salah, salat, mosque, masjid, prayer, worship
 Requires at least: 2.8 or higher
 Tested up to: 3.8
-Stable tag: 1.0.2
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: http://www.erdemarslan.com/

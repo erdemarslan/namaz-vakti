@@ -1,5 +1,50 @@
-.tarih {
+/*
+ * Namaz Vakti Wordpress Plugin
+ * namazvakti-style.css
+ * Erdem Arslan - http://www.erdemarslan.com
+*/
+
+.yesil {
 	background-color:#008A00;
+}
+
+.tr-yesil:hover{
+	background-color:#94BD4A;
+}
+
+.mavi {
+	background-color:#1B58B8;
+}
+
+.tr-mavi:hover{
+	background-color:#006AC1;
+}
+
+.kirmizi {
+	background-color:#FF2E12;
+}
+
+.tr-kirmizi:hover{
+	background-color:#E56C19;
+}
+
+.turuncu {
+	background-color:#FF981D;
+}
+
+.tr-turuncu:hover{
+	background-color:#E56C19;
+}
+
+.siyah {
+	background-color:#2E1700;
+}
+
+.tr-siyah:hover{
+	background-color:#306772;
+}
+
+.tarih {
 	padding:20px;
 	text-align:center;
 	vertical-align:middle;
@@ -30,19 +75,18 @@
 
 
 .secim {
-	background-color:#008A00;
 	position:relative;
+	text-align:center;
 }
 
 .secim select {
 	padding:6px;
 	margin-top: 3px;
-	width: 100%;
+	width: 90%;
 	font-weight:bold;
 }
 
 .namaz {
-    background-color:#008A00;
 	color:#ffffff;
 	padding-top:10px;
 	padding-bottom: 10px;
@@ -58,7 +102,4 @@
 .namaz table td {
     padding:5px;
     text-align: left;
-}
-.namaz table tr:hover {
-	background-color:#99b433;
 }

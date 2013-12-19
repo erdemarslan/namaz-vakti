@@ -3,7 +3,7 @@
 Plugin Name: Diyanet İşleri Namaz Vakti Eklentisi
 Plugin URI: http://www.erdemarslan.com/wordpress/18-12-2013/535-namaz-vakitleri-wordpress-eklentisi-widget.html
 Description: Bu eklenti Diyanet İşleri Başkanlığından namaz vakitlerini alır ve gösterir.
-Version: 1.0.2
+Version: 1.1
 Author: Erdem ARSLAN
 Author URI: http://www.erdemarslan.com
 */
@@ -11,12 +11,13 @@ Author URI: http://www.erdemarslan.com
 # Bu widgetde şehir secimleri kullanıcıya bağlıdır.
 
 // Tanımlamalar
-define('NV_VERSION', '1.0.2');
+define('NV_VERSION', '1.1');
 define('NV_OPTION_SEHIRLER', 'namazvakti_sehirler'); // veritabanı şehirler
 define('NV_OPTION_VARSAYILAN_SEHIR', 'namazvakti_varsayilan_sehir'); // veritabanı varsayılan şehir
 define('NV_OPTION_API_ANAHTARI', 'namazvakti_api_anahtari');
 define('NV_SEHIR_ID', 'namazvakti_sehir_ID');
 define('NV_SEHIR_ADI', 'namazvakti_sehir_adi');
+define('NV_OPTION_WIDGET_RENGI', 'namazvakti_widget_rengi');
 
 
 Class NV_Widget extends WP_Widget
@@ -88,6 +89,9 @@ Class NV_Widget extends WP_Widget
 		$vtdeki_sehirler = json_decode(get_option( NV_OPTION_SEHIRLER ), TRUE);
 		$varsayilan_sehir_id = get_option( NV_OPTION_VARSAYILAN_SEHIR );
 		$varsayilan_sehir_adi = $vtdeki_sehirler[$varsayilan_sehir_id];
+		$widget_color = get_option( NV_OPTION_WIDGET_RENGI );
+		
+		$widget_color = $widget_color === false ? 'yesil' : $widget_color;
 		
 		$gun = date('d.m.Y', time());
 		$vakit = $this->namazvakti_al_vakitler($varsayilan_sehir_id);
@@ -101,7 +105,7 @@ Class NV_Widget extends WP_Widget
 		
 			echo $before_title . $baslik . $after_title;			
 			?>
-			<div class="wrap">
+			<div class="wrap <?php echo $widget_color; ?>">
 				
 				<div class="tarih">
 					<div class="gun"><?php echo date('d', time()); ?></div>
@@ -142,37 +146,37 @@ Class NV_Widget extends WP_Widget
 						<div id="namazvakti_sonuclist">
 							<table cellspacing="0" cellpadding="0" id="vakitler">
 							<tbody>
-								<tr>
+								<tr class="tr-<?php echo $widget_color; ?>">
 								<th>İmsak</th>
 								<td class="imsak"><?php echo $vakit->imsak; ?></td>
 								</tr>
 								
-								<tr>
+								<tr class="tr-<?php echo $widget_color; ?>">
 								<th>Güneş</th>
 								<td class="gunes"><?php echo $vakit->gunes; ?></td>
 								</tr>
 								
-								<tr>
+								<tr class="tr-<?php echo $widget_color; ?>">
 								<th>Öğle</th>
 								<td class="ogle"><?php echo $vakit->ogle; ?></td>
 								</tr>
 								
-								<tr>
+								<tr class="tr-<?php echo $widget_color; ?>">
 								<th>İkindi</th>
 								<td class="ikindi"><?php echo $vakit->ikindi; ?></td>
 								</tr>
 								
-								<tr>
+								<tr class="tr-<?php echo $widget_color; ?>">
 								<th>Akşam</th>
 								<td class="aksam"><?php echo $vakit->aksam; ?></td>
 								</tr>
 								
-								<tr>
+								<tr class="tr-<?php echo $widget_color; ?>">
 								<th>Yatsı</th>
 								<td class="yatsi"><?php echo $vakit->yatsi; ?></td>
 								</tr>
 								
-								<tr>
+								<tr class="tr-<?php echo $widget_color; ?>">
 								<th>Kıble</th>
 								<td class="kible"><?php echo $vakit->kible; ?></td>
 								</tr>
@@ -268,6 +272,11 @@ register_activation_hook( __FILE__, function() {
 	if ( get_option( NV_OPTION_API_ANAHTARI ) === FALSE )
 	{
 		add_option( NV_OPTION_API_ANAHTARI, '' );
+	}
+	
+	if ( get_option ( NV_OPTION_WIDGET_RENGI ) === FALSE )
+	{
+		add_option( NV_OPTION_WIDGET_RENGI, 'yesil' );
 	}
 });
 
