@@ -1,0 +1,64 @@
+.tarih {
+	background-color:#008A00;
+	padding:20px;
+	text-align:center;
+	vertical-align:middle;
+	color:#FFFFFF;
+	/*margin-bottom:5px;*/
+}
+
+.tarih .gun {
+	font-size:36px;
+	font-weight:bold;
+	margin-bottom:10px;
+}
+
+.tarih .ayyil {
+	font-size:16px;
+	margin-bottom:10px;
+}
+
+.tarih .hicri {
+	font-size:16px;
+	font-weight:bold;
+}
+
+.tarih .sehir {
+	margin-top:10px;
+	font-weight:bold;
+}
+
+
+.secim {
+	background-color:#008A00;
+	position:relative;
+}
+
+.secim select {
+	padding:6px;
+	margin-top: 3px;
+	width: 100%;
+	font-weight:bold;
+}
+
+.namaz {
+    background-color:#008A00;
+	color:#ffffff;
+	padding-top:10px;
+	padding-bottom: 10px;
+}
+*:first-child+html .namaz {margin-top:0px}
+.namaz table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0px;
+	color:#ffffff;
+}
+.namaz table th { font-weight:bold; padding-left:20px; }
+.namaz table td {
+    padding:5px;
+    text-align: left;
+}
+.namaz table tr:hover {
+	background-color:#99b433;
+}
