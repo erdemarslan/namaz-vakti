@@ -8,71 +8,72 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: http://www.erdemarslan.com/
 
-Namaz Vakitleri eklentisi, namaz vakitlerini belirlediğiniz şehirlerde gösterilmesini sağlayan bir bileşendir.
+This plugin shows prayer (salah) times for Muslims with pretty widget.
+Namaz Vakitleri eklentisi, namaz vakitlerini belirlediÄŸiniz ÅŸehirlerde gÃ¶sterilmesini saÄŸlayan bir bileÅŸendir.
 
 == Description ==
 
-Bu eklenti, Diyanet İşleri Başkanlığının yayınladığı namaz vakitlerini Wordpress sitenizde güzel bir bileşen olarak
-yayınlamanızı sağlar. Varsayılan bir şehir seçebilir, şehirlerinizi özelleştirebilirsiniz. Esnek bir yapıya sahip bu eklenti
-sayesinde ziyaretçilerinize namaz vakitlerini göstermekte hiç zorlanmayacaksınız.
+Bu eklenti, Diyanet Ä°ÅŸleri BaÅŸkanlÄ±ÄŸÄ±nÄ±n yayÄ±nladÄ±ÄŸÄ± namaz vakitlerini Wordpress sitenizde gÃ¼zel bir bileÅŸen olarak
+yayÄ±nlamanÄ±zÄ± saÄŸlar. VarsayÄ±lan bir ÅŸehir seÃ§ebilir, ÅŸehirlerinizi Ã¶zelleÅŸtirebilirsiniz. Esnek bir yapÄ±ya sahip bu eklenti
+sayesinde ziyaretÃ§ilerinize namaz vakitlerini gÃ¶stermekte hiÃ§ zorlanmayacaksÄ±nÄ±z.
 
-Namaz Vakitlerini sağlıklı bir biçimde çekebilmek için lütfen Eralabs.net üzerinden API Anahtarı alınız. Ücretsiz API Anahtarınız
-için http://api.eralabs.net/api-anahtari adresini ziyaret ediniz. Şehirlerinizi özelleştirmek için ise; http://api.eralabs.net/namazvakti
+Namaz Vakitlerini saÄŸlÄ±klÄ± bir biÃ§imde Ã§ekebilmek iÃ§in lÃ¼tfen Eralabs.net Ã¼zerinden API AnahtarÄ± alÄ±nÄ±z. Ãœcretsiz API AnahtarÄ±nÄ±z
+iÃ§in http://api.eralabs.net/api-anahtari adresini ziyaret ediniz. Åehirlerinizi Ã¶zelleÅŸtirmek iÃ§in ise; http://api.eralabs.net/namazvakti
 adresini ziyaret ediniz.
 
-Karşılaştığınız hatalarda lütfen beni bilgilendiriniz.
+KarÅŸÄ±laÅŸtÄ±ÄŸÄ±nÄ±z hatalarda lÃ¼tfen beni bilgilendiriniz.
 
 **Features**
 
-* İstediğiniz kadar şehir için namaz vakitlerini gösterebilme
+* Ä°stediÄŸiniz kadar ÅŸehir iÃ§in namaz vakitlerini gÃ¶sterebilme
 * %100 Diyanetin verileri
-* Özelleştirilebilir
+* Ã–zelleÅŸtirilebilir
     
 **Usage**
 
-1. Önce Eklentiyi kurun.
-2. Eklentiyi aktifleştirin.
-3. Ayarlar -> Namaz Vakti Ayarlarına gidin ve API anahtarınızı kaydedin.
-4. Görünüm -> Bileşenler sayfasına gidin ve bileşeni side bar'a sürükleyip kaydedin.
-5. İsterseniz Ayarlar -> Namaz Vakti Ayarlarından şehirlerinizi özelleştirebilirsiniz.
+1. Ã–nce Eklentiyi kurun.
+2. Eklentiyi aktifleÅŸtirin.
+3. Ayarlar -> Namaz Vakti AyarlarÄ±na gidin ve API anahtarÄ±nÄ±zÄ± kaydedin.
+4. GÃ¶rÃ¼nÃ¼m -> BileÅŸenler sayfasÄ±na gidin ve bileÅŸeni side bar'a sÃ¼rÃ¼kleyip kaydedin.
+5. Ä°sterseniz Ayarlar -> Namaz Vakti AyarlarÄ±ndan ÅŸehirlerinizi Ã¶zelleÅŸtirebilirsiniz.
 
 
 
 == Installation ==
 
-İsterseniz yönetim panelinden eklentiyi kurabilir ya da namazvakti klasörünü FTP üzerinden dosyaları yükleyerek, yönetim panelinizden aktifleştirebilirsiniz.
+Ä°sterseniz yÃ¶netim panelinden eklentiyi kurabilir ya da namazvakti klasÃ¶rÃ¼nÃ¼ FTP Ã¼zerinden dosyalarÄ± yÃ¼kleyerek, yÃ¶netim panelinizden aktifleÅŸtirebilirsiniz.
 
 == Frequently Asked Questions == 
 
-* API Anahtarını nereden alabilirim?
+* API AnahtarÄ±nÄ± nereden alabilirim?
   - http://api.eralabs.net/api-anahtari adresinden alabilirsiniz.
 
 == Screenshots ==
 
-1. Bileşen (Widget) Görüntüsü 1
-2. Bileşen (Widget) Görüntüsü 2
-3. Yönetim Paneli 1
-4. Yönetim Paneli 2
-5. Yönetim Paneli 3
+1. BileÅŸen (Widget) GÃ¶rÃ¼ntÃ¼sÃ¼ 1
+2. BileÅŸen (Widget) GÃ¶rÃ¼ntÃ¼sÃ¼ 2
+3. YÃ¶netim Paneli 1
+4. YÃ¶netim Paneli 2
+5. YÃ¶netim Paneli 3
 
 **Credits**
 
-Diyanet İşleri Başkanlığı - <a href="http://www.diyanet.gov.tr">Ziyaret Et</a>
+Diyanet Ä°ÅŸleri BaÅŸkanlÄ±ÄŸÄ± - <a href="http://www.diyanet.gov.tr">Ziyaret Et</a>
 
 == Contact ==
 
-Benimle iletişime geçmek için lütfen <a href="http://www.erdemarslan.com">blogumu</a> kullanınız.
+Benimle iletiÅŸime geÃ§mek iÃ§in lÃ¼tfen <a href="http://www.erdemarslan.com">blogumu</a> kullanÄ±nÄ±z.
 
 == Changelog ==
 
 = 1.0.2 =
 
-Eklenti hazırlandı.
-Görünüm iyileştirmeleri yapıldı.
+Eklenti hazÄ±rlandÄ±.
+GÃ¶rÃ¼nÃ¼m iyileÅŸtirmeleri yapÄ±ldÄ±.
 
 == UPGRADE NOTICE ==
 
-* Güncelleme yok
+* GÃ¼ncelleme yok
 
 == License ==
 
