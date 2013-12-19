@@ -3,7 +3,7 @@ Contributors: Erdem Arslan @erdemsaid
 Tags: diyanet, namaz, ezan, vakit, muslim, islam, salah, salat, mosque, masjid, prayer, worship
 Requires at least: 2.8 or higher
 Tested up to: 3.8
-Stable tag: 1.2
+Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: http://www.erdemarslan.com/
@@ -28,6 +28,7 @@ Karşılaştığınız hatalarda lütfen beni bilgilendiriniz.
 * İstediğiniz kadar şehir için namaz vakitlerini gösterebilme
 * %100 Diyanetin verileri
 * Özelleştirilebilir
+* 5 farklı renk seçeneğini kullanabilirsiniz
     
 **Kullanım**
 
@@ -65,6 +66,12 @@ Diyanet İşleri Başkanlığı - <a href="http://www.diyanet.gov.tr">Ziyaret Et
 Benimle iletişime geçmek için lütfen <a href="http://www.erdemarslan.com">blogumu</a> kullanınız.
 
 == Changelog ==
+
+= 1.3 =
+
+http://api.eralabs.net/ bağlantı problemi giderildi.
+Verilerin işlenmesi ile ilgili kontroller geliştirildi.
+Bazı ufak hatalar giderildi.
 
 = 1.2 =
 

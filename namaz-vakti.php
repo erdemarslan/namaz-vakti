@@ -3,15 +3,13 @@
 Plugin Name: Diyanet İşleri Namaz Vakti Eklentisi
 Plugin URI: http://www.erdemarslan.com/wordpress/18-12-2013/535-namaz-vakitleri-wordpress-eklentisi-widget.html
 Description: Bu eklenti Diyanet İşleri Başkanlığından namaz vakitlerini alır ve gösterir.
-Version: 1.2
+Version: 1.3
 Author: Erdem ARSLAN
 Author URI: http://www.erdemarslan.com
 */
 
-# Bu widgetde şehir secimleri kullanıcıya bağlıdır.
-
 // Tanımlamalar
-define('NV_VERSION', '1.2');
+define('NV_VERSION', '1.3');
 define('NV_OPTION_SEHIRLER', 'namazvakti_sehirler'); // veritabanı şehirler
 define('NV_OPTION_VARSAYILAN_SEHIR', 'namazvakti_varsayilan_sehir'); // veritabanı varsayılan şehir
 define('NV_OPTION_API_ANAHTARI', 'namazvakti_api_anahtari');
@@ -26,14 +24,8 @@ Class NV_Widget extends WP_Widget
 	private $version;
 	private $anahtar;
 	
-	
 	public function __construct()
 	{
-		//global $version;
-		//NV_VERSION = $version;
-		//NV_VERSION = NV_VERSION;
-		// Widgeti kaydet init et
-		//register_widget('NV_Widget');
 		// Still ve JS dosyalarını ayarla
 		wp_enqueue_script( 'jquery');
 		wp_enqueue_style( 'era_namazvakti_style', plugins_url( "/assets/css/namazvakti-style.css", __FILE__ ), array(), NV_VERSION);
@@ -49,28 +41,27 @@ Class NV_Widget extends WP_Widget
 		$this->cache = new NV_Cache( dirname(__FILE__) . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR );
 		
 		$params = array(
-			'description'	=> 'Bu widget kullanıcıya namaz vakitlerini gösterir. Şehri kullanıcı seçer.',
-			'name'		=> 'Namaz Vakitleri - Kullanıcı Tanımlı'
+			'description'	=> 'Bu widget namaz vakitlerini gösterir.',
+			'name'		=> 'Namaz Vakitleri'
 		);
 		
 		$this->anahtar = get_option( NV_OPTION_API_ANAHTARI );
 		parent::__construct('NV_Userselect','',$params);
 	}
 	
-	
 	public function form($instance)
 	{
 		extract($instance);
 		?>
-        <p>
-        	<label for="<?php echo $this->get_field_id('baslik'); ?>">Widget Başlığı: </label>
-            <input
-            	class="widefat"
-                id="<?php echo $this->get_field_id('baslik'); ?>"
-                name="<?php echo $this->get_field_name('baslik'); ?>"
-                value="<?php if ( isset($baslik) ) echo esc_attr($baslik); ?>" />
-        </p>
-        <?php
+		<p>
+			<label for="<?php echo $this->get_field_id('baslik'); ?>">Widget Başlığı: </label>
+			<input
+			class="widefat"
+			id="<?php echo $this->get_field_id('baslik'); ?>"
+			name="<?php echo $this->get_field_name('baslik'); ?>"
+			value="<?php if ( isset($baslik) ) echo esc_attr($baslik); ?>" />
+		</p>
+		<?php
 	}
 	
 	private function _get_ayyil()
@@ -90,18 +81,23 @@ Class NV_Widget extends WP_Widget
 		$varsayilan_sehir_id = get_option( NV_OPTION_VARSAYILAN_SEHIR );
 		$varsayilan_sehir_adi = $vtdeki_sehirler[$varsayilan_sehir_id];
 		$widget_color = get_option( NV_OPTION_WIDGET_RENGI );
-		
-		$widget_color = $widget_color === false ? 'yesil' : $widget_color;
+		$widget_color = $widget_color === false ? 'mavi' : $widget_color;
 		
 		$gun = date('d.m.Y', time());
 		$vakit = $this->namazvakti_al_vakitler($varsayilan_sehir_id);
-		$vakit = $vakit->$gun;
-		
-		//print_r($vakit);
 		
 		echo $before_widget;
 			
-			if(empty($this->anahtar)) {  echo 'NamazVakti için API Anahtarı kaydedilmemiş!' . $after_widget; } else {
+			if(empty($this->anahtar)) {
+				echo 'NamazVakti için API Anahtarı kaydedilmemiş!' . $after_widget;
+			}
+			elseif (count( $vakit ) == 0)
+			{
+				echo 'NamazVakti verileri alınamadı! Daha sonra tekrar deneyin.' . $after_widget;
+			}
+			else {
+			
+			$vakit = $vakit->$gun;
 		
 			echo $before_title . $baslik . $after_title;			
 			?>
@@ -134,13 +130,9 @@ Class NV_Widget extends WP_Widget
 						<?php
 						}
 						?>
-						
 					</select>
 				</div>
-			
-			
-			
-			
+
 				<div class="namaz">
 					<div class="namaz-vakit">
 						<div id="namazvakti_sonuclist">
@@ -203,16 +195,21 @@ Class NV_Widget extends WP_Widget
 			$veriler = $this->cache->_oku_cache($dosya);
 			return $veriler->veri;
 		} else {
-			$veri = wp_remote_get($url);
-			$veri = json_decode($veri['body']);
-			// veriler kontrol et!
-			if($veri->durum == 'basarili')
+			
+			$data = wp_remote_get($url);
+			if( is_wp_error($data) )
 			{
-				$this->cache->
-				_yaz_cache($dosya,json_encode($veri));
-				return $veri->veri;
-			} else {
 				return new stdClass;
+			} else {
+				$veri = json_decode( wp_remote_retrieve_body( $data ) );
+				// veriler kontrol et!
+				if($veri->durum == 'basarili')
+				{
+					$this->cache->_yaz_cache($dosya,json_encode($veri));
+					return $veri->veri;
+				} else {
+					return new stdClass;
+				}
 			}
 		}
 	}
@@ -220,16 +217,19 @@ Class NV_Widget extends WP_Widget
 	
 	private function namazvakti_al_vakitler($sehir)
 	{
-		$url = 'http://api.eralabs.net/namazvakti/' . $this->anahtar .'/vakitler/sehir:' . $sehir .'.json';
-		return $this->get_data($url);
+		if(empty($this->anahtar))
+		{
+			return new stdClass;
+		} else {
+			$url = 'http://api.eralabs.net/namazvakti/' . $this->anahtar .'/vakitler/sehir:' . $sehir .'.json';			
+			return $this->get_data($url);
+		}
 	}
 	
 	public function namazvakti_ajax()
 	{
-		//extract($_POST);
 		switch($_POST['do'])
 		{
-		
 			case 'alVakit' :
 				$veri = $this->namazvakti_al_vakitler($_POST['sehir']);
 				
@@ -247,7 +247,6 @@ Class NV_Widget extends WP_Widget
 			break;
 		}
 	}
-	
 	
 	
 }
@@ -289,7 +288,6 @@ add_action( 'admin_menu', function() {
 	add_options_page( 'Namaz Vakti Ayarları', 'Namaz Vakti Ayarları', 'manage_options', 'namazvakti', 'namazvakti_ayarlari' );
 });
 
-
 // Eklentiye extra linkler ekle
 add_filter('plugin_action_links', 'namazvakti_ayarlar_linkleri', 10, 2);
 function namazvakti_ayarlar_linkleri($links, $file) {
@@ -305,7 +303,6 @@ function namazvakti_ayarlar_linkleri($links, $file) {
 	$links[] = $eralabs;	
     }
     return $links;
- 
 }
 
 # Admin sayfasını yükler...
