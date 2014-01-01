@@ -3,13 +3,13 @@
 Plugin Name: Diyanet İşleri Namaz Vakti Eklentisi
 Plugin URI: http://www.erdemarslan.com/wordpress/18-12-2013/535-namaz-vakitleri-wordpress-eklentisi-widget.html
 Description: Bu eklenti Diyanet İşleri Başkanlığından namaz vakitlerini alır ve gösterir.
-Version: 1.3
+Version: 1.4
 Author: Erdem ARSLAN
 Author URI: http://www.erdemarslan.com
 */
 
 // Tanımlamalar
-define('NV_VERSION', '1.3');
+define('NV_VERSION', '1.4');
 define('NV_OPTION_SEHIRLER', 'namazvakti_sehirler'); // veritabanı şehirler
 define('NV_OPTION_VARSAYILAN_SEHIR', 'namazvakti_varsayilan_sehir'); // veritabanı varsayılan şehir
 define('NV_OPTION_API_ANAHTARI', 'namazvakti_api_anahtari');
@@ -42,7 +42,7 @@ Class NV_Widget extends WP_Widget
 		
 		$params = array(
 			'description'	=> 'Bu widget namaz vakitlerini gösterir.',
-			'name'		=> 'Namaz Vakitleri'
+			'name'			=> 'Namaz Vakitleri'
 		);
 		
 		$this->anahtar = get_option( NV_OPTION_API_ANAHTARI );
@@ -66,7 +66,7 @@ Class NV_Widget extends WP_Widget
 	
 	private function _get_ayyil()
 	{
-		$aylar = array('', 'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık');
+		$aylar = array('01' => 'Ocak', '02' => 'Şubat', '03' => 'Mart', '04' => 'Nisan', '05' => 'Mayıs', '06' => 'Haziran', '07' => 'Temmuz', '08' => 'Ağustos', '09' => 'Eylül', '10' => 'Ekim', '11' => 'Kasım', '12' => 'Aralık');
 		return $aylar[date('m')] . ' ' . date('Y');
 	}
 	

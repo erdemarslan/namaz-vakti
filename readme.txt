@@ -3,7 +3,7 @@ Contributors: Erdem Arslan @erdemsaid
 Tags: diyanet, namaz, ezan, vakit, muslim, islam, salah, salat, mosque, masjid, prayer, worship
 Requires at least: 2.8 or higher
 Tested up to: 3.8
-Stable tag: 1.3
+Stable tag: 1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: http://www.erdemarslan.com/
@@ -66,6 +66,10 @@ Diyanet İşleri Başkanlığı - <a href="http://www.diyanet.gov.tr">Ziyaret Et
 Benimle iletişime geçmek için lütfen <a href="http://www.erdemarslan.com">blogumu</a> kullanınız.
 
 == Changelog ==
+
+= 1.4 =
+Widget üzerindeki tarih gösterimi ile ilgili sıkıntı giderildi.
+Önbellekleme ile ilgili problem giderildi.
 
 = 1.3 =
 

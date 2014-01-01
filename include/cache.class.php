@@ -30,7 +30,11 @@ Class NV_Cache
     		$zaman = time() - ($this->cachetime * 86400) - 1;
     		if ( filemtime( $this->cache . $file ) > $zaman )
     		{
-    			return true;
+    			if ( ((int) date('m',filemtime($this->cache . $file) )) != ((int)date('m')) )
+				{
+					return false;
+				}
+				return true;
     		} else {
     			return false;
     		}
