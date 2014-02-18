@@ -67,9 +67,9 @@ Answer: All coding standart change with after plugin version 2.0. So you must re
 == Changelog ==
 = 2.1 =
 
-[tr] readme.txt güncellendi. Yeni diller eklendi. (Almanca ve Fransızca)
+[tr] readme.txt güncellendi. Yeni diller eklendi.
 
-[en] Updated readme.txt. New languages added (Deutch and French)
+[en] Updated readme.txt. New languages added.
 
 
 = 2.0.3 =
