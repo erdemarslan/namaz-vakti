@@ -1,10 +1,9 @@
 === Namaz Vakti ===
 Contributors: Erdem ARSLAN @erdemsaid
 Tags: diyanet, namaz, ezan, vakit, muslim, islam, salah, salat, mosque, masjid, prayer, worship
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=EHYSTPKQQEUYW
 Requires at least: 2.8
-Tested up to: 3.8.1
-Stable tag: 2.1
+Tested up to: 4.9.6
+Stable tag: 4.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,28 +12,34 @@ Bu eklenti Müslümanlar için namaz vakitlerini gösterir. This plugin shows pr
 == Description ==
 Bu eklenti namaz vakitlerini bileşen olarak gösterir. Namaz vakitleri ile ilgili bilgiler T.C. Diyanet İşleri Başkanlığı'ndan alınmaktadır.
 
-** ÖZELLİKLERİ **
+= ÖZELLİKLERİ =
+* Çoklu dil desteği
+* 200den fazla ülke, 5000den fazla yer için namaz vakti
+* 8 farklı renk seçeneği
 
-- Çoklu dil desteği
-- 200den fazla ülke, 5000den fazla yer için namaz vakti
-- 8 farklı renk seçeneği
+= KATKIDA BULUNANLAR =
+* Ummah Tech - Fransızca Çeviri
+* Mücahit YURT - Danimarkaca
+* Sabahuddin Sijamhodzic - Bosnaca
 
-** ÇEVİRİ DESTEĞİ SUNUN **
-
+= ÇEVİRİ DESTEĞİ SUNUN =
 Eklenti için çeviri desteğinde bulunabilirsiniz. Dil dosyalarını http://www.erdemarslan.com/yuklemeler/namazvakti_langs.zip adresinden indirebilirsiniz. Çevirilerinizi erdemsaid[@t]gmail[d0t]com adresine gönderiniz.
 
 ###################################################################################################
 
 This plugin shows prayer times with a widget. This plugin get prayer times from Presidency of Religious Affairs of Turkey.
 
-** FEATURES **
+= FEATURES =
+* Multiple language support
+* Prayer times for more than 200 countries and more than 5000 locations.
+* 8 different color option
 
-- Multiple language support
-- Prayer times for more than 200 countries and more than 5000 locations.
-- 8 different color option
+= CONTRIBUTORS =
+* Ummah Tech - French Translation
+* Mucahit YURT - Danish Translation
+* Sabahuddin Sijamhodzic - Bosnian
 
-** SUPPORT TRANSLATION **
-
+= SUPPORT TRANSLATION =
 You can help me for translations. If you help me, you will download language files from http://www.erdemarslan.com/yuklemeler/namazvakti_langs.zip Please send your translations to erdemsaid[@t]gmail[d0t]com
 
 == Installation ==
@@ -65,83 +70,115 @@ Answer: All coding standart change with after plugin version 2.0. So you must re
 3. Bileşen / Widget
 
 == Changelog ==
+= 4.2.2 =
+* [tr] namazvakti.js üzerindeki ufak bir hata düzeltildi.
+* [en] Fixed a small bug on namazvakti.js
+
+= 4.2.1 =
+* [tr] Güncelleme
+* [en] Update
+
+= 4.2 =
+* [tr] Namaz vakti çekilebilecek şehir listesi güncellendi. 8303 lokasyonun namaz vakti çekilebiliyor. Sınıf güncellendi. Birçok şehre ait verilerin yanlış çekilmesi problemi giderildi. Çekirdekte iyileştirmeler yapıldı. Kodlar sadeleştirildi.
+* [en] City list updated. Now we get 8303 locations' prayer times. Class is upgraded. Solved getting wrong data problem. Core upgraded.
+
+= 4.1.1 =
+* [tr] Veri çekme ile ilgili problem giderildi. Sınıf güncellendi. Ajax ile çekilen verilerin sayfa yenilenmeden gözükmemesi sorunu giderildi. CSS problemleri giderildi.
+* [en] Fixed getting data problem from server. Class updated. Ajax data problem solved. CSS problems solved.
+
+= 4.1.0 =
+* [tr] Veri çekme sorunu düzeltildi. Kıble bilgisi widgetten kaldırıldı.
+* [en] Fixed getting data problem from server. Removed Qibla information from widget.
+
+= 4.0.0 =
+* [tr] Sunucu değişikliği sonucu oluşan hata düzeltildi.
+* [en] Fixed errors after server changes.
+
+= 3.4.4 =
+* [tr] Bosna dili eklendi.
+* [en] Added Bosnian language support.
+
+= 3.4.3 =
+* [tr] Danimarkaca dili eklendi.
+* [en] Added Danish language support.
+
+= 3.4.2 =
+* [tr] Sunucudan veri çekme problemi giderildi.
+* [en] Fixed getting data problem from server.
+
+= 3.4.1 =
+* [tr] Kodlarda globalleştirme yapıldı.
+* [en] Globalized Codes.
+
+= 3.4 =
+* [tr] Widgetteki Şehir - İlçe problemi giderildi. Hicri tarihteki dil problemi giderildi.
+* [en] Fixed city - town bug on widget. Fixed localization bug on hijri date.
+
+= 3.3 =
+* [tr] Hicri Tarih ile ilgili problem çözüldü. Kurulum ile ilgili sıkıntı giderildi.
+* [en] Fixed Hijri Date bug. Fixed installation bug.
+
+= 3.2 =
+* [tr] Widgetteki dil hataları giderildi.
+* [en] Fixed language errors on widget.
+
+= 3.1 =
+* [tr] Fransızca Çeviri eklendi.
+* [en] French Translation added.
+
+= 3.0 =
+* [tr] Diyanet'in sisteminde yaptığı değişiklik sonucu oluşan problem giderildi.
+* [en] Fixed errors about Diyanet's code changing.
+
+= 2.2 =
+* [tr] Diyanet'in Hac kuraları için sitesinde yaptığı değişiklik nedeniyle güncelleme. Önemli!
+* [en] Fixed server address changing for Hajj draw. Important!
+
 = 2.1 =
-
-[tr] readme.txt güncellendi. Yeni diller eklendi.
-
-[en] Updated readme.txt. New languages added.
-
+* [tr] readme.txt güncellendi. Yeni diller eklendi.
+* [en] Updated readme.txt. New languages added.
 
 = 2.0.3 =
-
-[tr] Bazı hatalar giderildi.
-
-[en] Fixed some errors.
-
+* [tr] Bazı hatalar giderildi.
+* [en] Fixed some errors.
 
 = 2.0.2 =
-
-[tr] Güncelleme hatası düzeltildi.
-
-[en] Fixed update error.
-
+* [tr] Güncelleme hatası düzeltildi.
+* [en] Fixed update error.
 
 = 2.0.1 =
-
-[tr] Dil hatası düzeltildi.
-
-[en] Fixed language errors.
-
+* [tr] Dil hatası düzeltildi.
+* [en] Fixed language errors.
 
 = 2.0 =
-
-[tr] Eklenti tekrardan kodlandı. Lisans anahtarı kaldırıldı. İlçeler de sisteme dahil edildi. Görünüm yeniden tasarlandı.
-
-[en] Plugin recoded. License key removed. Many towns added. Widget redesigned.
-
+* [tr] Eklenti tekrardan kodlandı. Lisans anahtarı kaldırıldı. İlçeler de sisteme dahil edildi. Görünüm yeniden tasarlandı.
+* [en] Plugin recoded. License key removed. Many towns added. Widget redesigned.
 
 = 1.4 =
-
-[tr] Widget üzerindeki tarih gösterimi ile ilgili sıkıntı giderildi. Önbellekleme ile ilgili problem giderildi.
-
-[en] Fixed showing date problem on Widget. Fixed scaching errors.
-
+* [tr] Widget üzerindeki tarih gösterimi ile ilgili sıkıntı giderildi. Önbellekleme ile ilgili problem giderildi.
+* [en] Fixed showing date problem on Widget. Fixed scaching errors.
 
 = 1.3 =
-
-[tr] http://api.eralabs.net/ bağlantı problemi giderildi. Verilerin işlenmesi ile ilgili kontroller geliştirildi. Bazı ufak hatalar giderildi.
-
-[en] Fixed connection error http://api.eralabs.net. Improved controllers for processing data. Some errors fixed.
-
+* [tr] http://api.eralabs.net/ bağlantı problemi giderildi. Verilerin işlenmesi ile ilgili kontroller geliştirildi. Bazı ufak hatalar giderildi.
+* [en] Fixed connection error http://api.eralabs.net. Improved controllers for processing data. Some errors fixed.
 
 = 1.2 =
-
-[tr] Bazı hatalar giderildi.
-
-[en] Some errors fixed.
-
+* [tr] Bazı hatalar giderildi.
+* [en] Some errors fixed.
 
 = 1.1 =
-
-[tr] Widget için renk ayarı eklendi.
-
-[en] Added color options for widget.
-
+* [tr] Widget için renk ayarı eklendi.
+* [en] Added color options for widget.
 
 = 1.0.2 =
-
-[tr] Görünüm hataları giderildi
-
-[en] Fixed display errors
-
+* [tr] Görünüm hataları giderildi
+* [en] Fixed display errors
 
 = 1.0 =
-
-[tr] İlk yayınlama
-
-[en] First release
+* [tr] İlk yayınlama
+* [en] First release
 
 == Upgrade Notice ==
-Bu güncelleme eklentiye iki yeni dil ekler.
+Önemli !
 ----------------------------------------------------------------------------------------------
-This update add 2 language to plugin.
+Important !

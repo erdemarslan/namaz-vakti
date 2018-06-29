@@ -2,23 +2,54 @@
 
 if (isset($_POST['submit']))
 {
-	if( $_POST['ulkeler'] != "0" OR $_POST['sehirler'] != "0" )
+	$ulke = $_POST['ulkeler'];
+	$sehir = $_POST['sehirler'];
+	$ilce = $_POST['ilceler'];
+
+	if( $ulke != "0" OR $sehir != "0" )
 	{
 		// kaydetmeye başlayabiliriz!
-		$sehir = $_POST['ilceler'] == "0" ? $_POST['sehirler'] : $_POST['ilceler'];
-		
-		update_option( NV_DB_DEFAULT_COUNTRY_NAME, $_POST['ulkeler'] );
-		update_option( NV_DB_DEFAULT_CITY_NAME, $_POST['sehirler'] );
-		update_option( NV_DB_DEFAULT_TOWN_NAME, $sehir );
-		
+		if( $ulke == 2 || $ulke == 33 || $ulke == 52 || $ulke == 13 || $ulke == 42 || $ulke == 47 || $ulke == 64 ) {
+			if($ilce == 0) {
+				echo '<div id="message" class="updated fade"><p>';
+				_e('Lütfen tüm alanları doldurunuz!', 'namazvakti');
+				echo '</p></div>';
+			} else {
+				update_option( NV_DB_DEFAULT_COUNTRY_NAME, $ulke );
+				update_option( NV_DB_DEFAULT_CITY_NAME, $sehir );
+				update_option( NV_DB_DEFAULT_TOWN_NAME, $ilce );
+				
+				echo '<div id="message" class="updated fade"><p>';
+				_e('Ayarlar başarıyla kaydedildi.', 'namazvakti');
+				echo '</p></div>';
+			}
+		} else {
+			update_option( NV_DB_DEFAULT_COUNTRY_NAME, $ulke );
+			update_option( NV_DB_DEFAULT_CITY_NAME, $sehir );
+			update_option( NV_DB_DEFAULT_TOWN_NAME, $sehir );
+			
+			echo '<div id="message" class="updated fade"><p>';
+			_e('Ayarlar başarıyla kaydedildi.', 'namazvakti');
+			echo '</p></div>';
+		}
+	} else {
 		echo '<div id="message" class="updated fade"><p>';
-		_e('Ayarlar başarıyla kaydedildi.', 'namazvakti');
+		_e('Lütfen tüm alanları doldurunuz!', 'namazvakti');
 		echo '</p></div>';
 	}
 }
+
 $varsayilan_ulke	= get_option( NV_DB_DEFAULT_COUNTRY_NAME );
 $varsayilan_sehir	= get_option( NV_DB_DEFAULT_CITY_NAME );
 $varsayilan_ilce	= get_option( NV_DB_DEFAULT_TOWN_NAME );
+
+$disabled = "";
+if( $varsayilan_ulke == 2 || $varsayilan_ulke == 33 || $varsayilan_ulke == 52 || $varsayilan_ulke == 13 || $varsayilan_ulke == 42 || $varsayilan_ulke == 47 || $varsayilan_ulke == 64 ) {
+	$disabled = '';
+} else {
+	$disabled = ' disabled = "disabled"';
+}
+
 ?>
 
 <form method="post" action="">
@@ -30,16 +61,12 @@ $varsayilan_ilce	= get_option( NV_DB_DEFAULT_TOWN_NAME );
         <td>
         	<select name="ulkeler" id="ulkeler" onChange="selectCity();">
             	<option value="0"><?php _e('Lütfen bir ülke seçiniz', 'namazvakti'); ?></option>
-                <option value="TURKIYE" <?php if($varsayilan_ulke == 'TURKIYE') { echo 'selected'; } ?>><?php _e('TURKIYE', 'namazvakti'); ?></option>
                 <?php
 					$page_ulkeler = $this->nv->ulkeler();
-					foreach ($page_ulkeler as $value => $text)
+					foreach ($page_ulkeler['veri'] as $id => $ulke)
 					{
-						$selected = $varsayilan_ulke == $value ? ' selected' : '';
-						if($value != 'TURKIYE')
-						{
-							echo '<option value="' . $value . '" ' . $selected . '>' . __($value, 'namazvakti') . '</option>';
-						}
+						$selected = $varsayilan_ulke == $id ? ' selected' : '';
+						echo '<option value="' . $id . '" ' . $selected . '>' . __($ulke, 'namazvakti') . '</option>';
 					}
 				?>
             </select>
@@ -55,10 +82,10 @@ $varsayilan_ilce	= get_option( NV_DB_DEFAULT_TOWN_NAME );
             	<option value="0"><?php _e('Lütfen bir şehir seçiniz', 'namazvakti'); ?></option>
                 <?php
 					$page_sehirler = $this->nv->sehirler( $varsayilan_ulke );
-					foreach( $page_sehirler['veri'] as $ps )
+					foreach( $page_sehirler['veri'] as $key => $value )
 					{
-						$selectedsehir = $varsayilan_sehir == trim($ps['value']) ? ' selected' : '';
-						echo '<option value="' . trim($ps['value']) . '" ' . $selectedsehir . '>' . $ps['text'] . '</option>';
+						$selectedsehir = $varsayilan_sehir == $key ? ' selected' : '';
+						echo '<option value="' . $key . '" ' . $selectedsehir . '>' . $value . '</option>';
 					}
 				?>
             </select>            
@@ -71,16 +98,16 @@ $varsayilan_ilce	= get_option( NV_DB_DEFAULT_TOWN_NAME );
     	<th scope="row"><?php _e('Varsayılan İlçe', 'namazvakti'); ?></th>
         
         <td>
-        	<select name="ilceler" id="ilceler">
+        	<select name="ilceler" id="ilceler"<?php echo $disabled; ?>>
             	<option value="0"><?php _e('Lütfen bir ilçe seçiniz', 'namazvakti'); ?></option>
                 <?php
-					if( $varsayilan_ulke == 'TURKIYE' )
+					if( $varsayilan_ulke == 2 || $varsayilan_ulke == 33 || $varsayilan_ulke == 52 || $varsayilan_ulke == 13 || $varsayilan_ulke == 42 || $varsayilan_ulke == 47 || $varsayilan_ulke == 64 )
 					{
-						$page_ilceler = $this->nv->ilceler( $varsayilan_sehir );
-						foreach ( $page_ilceler['veri'] as $pi )
+						$page_ilceler = $this->nv->ilceler( $varsayilan_ulke, $varsayilan_sehir );
+						foreach ( $page_ilceler['veri'] as $key => $value )
 						{
-							$selectedilce = $varsayilan_ilce == trim($pi['value']) ? ' selected' : '';
-							echo '<option value="' . trim($pi['value']) . '"' . $selectedilce . '>' . $pi['text'] . '</option>';
+							$selectedilce = $varsayilan_ilce == $key ? ' selected' : '';
+							echo '<option value="' . $key . '"' . $selectedilce . '>' . $value . '</option>';
 						}
 					}
 				?>

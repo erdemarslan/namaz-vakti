@@ -25,24 +25,41 @@ function selectCity()
 				
 				if( response.durum == 'basarili' )
 				{
-					jQuery.each( response.veri, function(i, item) {
-						var newOption = jQuery('<option />');
-						jQuery('#sehirler').append(newOption);
-						
-						newOption.val(item.value);
-						newOption.html(item.text);
-						
-						if(ulke == 'TURKIYE')
-						{
-							jQuery('#label_ilceler').show();
-							jQuery('#ilceler').show();
-						} else {
-							jQuery('#label_ilceler').hide();
-							jQuery('#ilceler').hide();
-						}
+					if(response.ilce == true) {
+						// Şehir yok doğrudan ilçe,
+
+						jQuery.each( response.veri, function(key, val) {
+							var newOption = jQuery('<option />');
+							jQuery('#ilceler').append(newOption);
+							
+							newOption.val(key);
+							newOption.html(val);				
+						});
+
+						jQuery('#label_sehirler').hide();
+						jQuery('#sehirler').hide();
+						jQuery('#label_ilceler').show();
+						jQuery('#ilceler').show();
 						loader.hide();
-						
-					});
+
+
+					} else {
+						// Şehir var - ilçeler bir sonrakinde!
+						jQuery.each( response.veri, function(key, val) {
+							var newOption = jQuery('<option />');
+							jQuery('#sehirler').append(newOption);
+							
+							newOption.val(key);
+							newOption.html(val);				
+						});
+
+						jQuery('#label_sehirler').show();
+						jQuery('#sehirler').show();
+						jQuery('#label_ilceler').show();
+						jQuery('#ilceler').show();
+						loader.hide();
+					}
+					
 				} else {
 					alert(eranvjs.hata_veri_cekilemedi);
 					loader.hide();
@@ -61,16 +78,15 @@ function selectLocation()
 	
 	
 	jQuery('#ilceler').html(default_ilceler_select_value);
-	
-	if (ulke == 'TURKIYE')
-	{
+
+	if(sehir != 0) {
 		var loader = jQuery('.loader');
 		loader.show();
-		
+
 		jQuery.ajax({
 			type:		'POST',
 			url:		eranvjs.ajaxurl,
-			data:		"action=ajax_action&do=getLocations&city=" + sehir,
+			data:		"action=ajax_action&do=getLocations&country=" + ulke + "&city=" + sehir,
 			//dataType:	"json",
 			success: 	function( data ) {
 				
@@ -78,12 +94,12 @@ function selectLocation()
 				
 				if( response.durum == 'basarili' )
 				{
-					jQuery.each( response.veri, function(i, item) {
+					jQuery.each( response.veri, function(key, val) {
 						var newOption = jQuery('<option />');
 						jQuery('#ilceler').append(newOption);
 						
-						newOption.val(item.value);
-						newOption.html(item.text);
+						newOption.val(key);
+						newOption.html(val);
 					});
 					loader.hide();
 				} else {
@@ -93,7 +109,6 @@ function selectLocation()
 			}
 		});
 	}
-	
 }
 
 
@@ -113,91 +128,55 @@ function getTimes()
 		alert(eranvjs.ulke_secilmemis);
 		button.removeAttr('disabled');
 	} else {
-		if (ulke == 'TURKIYE')
-		{
-			if (sehir == 0)
-			{
-				alert(eranvjs.sehir_secilmemis);
-				button.removeAttr('disabled');
-			} else {
-				if (ilce == 0)
-				{
-					alert(eranvjs.ilce_secilmemis);
-					button.removeAttr('disabled');
-				} else {
-					// vakitleri al!
-					vakital(ulke, sehir, ilce);
-					button.removeAttr('disabled');
-				}
-			}
+		if(sehir == 0 && ilce == 0) {
+			alert(eranvjs.sehir_secilmemis);
+			button.removeAttr('disabled');
+		}
+		else if(sehir != 0 && ilce == 0) {
+			alert(eranvjs.ilce_secilmemis);
+			button.removeAttr('disabled')
 		} else {
-			if (sehir == 0)
-			{
-				alert(eranvjs.sehir_secilmemis);
-				button.removeAttr('disabled');
-			} else {
-				// Vakitleri al
-				vakital(ulke, sehir, ilce);
-				button.removeAttr('disabled');
-			}
+			vakital(ilce);
+			button.removeAttr('disabled')
 		}
 	}
 }
 
 
-function vakital(ulke,sehir,ilce)
+function vakital(ilce)
 {
 	var loader = jQuery('.loader');
 	loader.show();
-	
-	var cekilecek_yer = ilce == 0 ? sehir : ilce;
-	var yer_ismi;
-	
-	if(ilce == 0)
-	{
-		cekilecek_yer = sehir;
-	} else {
-		cekilecek_yer = ilce;
-	}
-	
-	
-	if (sehir == ilce || ilce == 0)
-	{
-		yer_ismi = ulke + "<br>" + sehir;
-	} else {
-		yer_ismi = sehir + "<br>" + ilce;
-	}	
-	
+		
 	jQuery.ajax({
-			type:		'POST',
-			url:		eranvjs.ajaxurl,
-			data:		"action=ajax_action&do=getTimes&country=" + ulke + "&city=" + cekilecek_yer + "&town=" + sehir,
-			success: 	function( data ) {
+		type:		'POST',
+		url:		eranvjs.ajaxurl,
+		data:		"action=ajax_action&do=getTimes&town=" + ilce,
+		success: 	function( data ) {
+			
+			var response = jQuery.parseJSON( data );
+			
+			if( response.durum == 'basarili' )
+			{
+				// veriler yerlerine konulacak
+				jQuery('.namazvakti .yer').html((response.veri.yer_adi).replace("-", "<br />"));
+				jQuery('.zaman .hicri').html(response.veri.vakit.hicri_uzun);
+				jQuery('#imsak .vakit_saati').html(response.veri.vakit.imsak);
+				jQuery('#gunes .vakit_saati').html(response.veri.vakit.gunes);
+				jQuery('#ogle .vakit_saati').html(response.veri.vakit.ogle);
+				jQuery('#ikindi .vakit_saati').html(response.veri.vakit.ikindi);
+				jQuery('#aksam .vakit_saati').html(response.veri.vakit.aksam);
+				jQuery('#yatsi .vakit_saati').html(response.veri.vakit.yatsi);
 				
-				var response = jQuery.parseJSON( data );
-				
-				if( response.durum == 'basarili' )
-				{
-					// veriler yerlerine konulacak
-					jQuery('.namazvakti .yer').html(yer_ismi);
-					jQuery('.zaman .hicri').html(response.veri.hicritarih);
-					jQuery('#imsak .vakit_saati').html(response.veri.imsak);
-					jQuery('#gunes .vakit_saati').html(response.veri.gunes);
-					jQuery('#ogle .vakit_saati').html(response.veri.ogle);
-					jQuery('#ikindi .vakit_saati').html(response.veri.ikindi);
-					jQuery('#aksam .vakit_saati').html(response.veri.aksam);
-					jQuery('#yatsi .vakit_saati').html(response.veri.yatsi);
-					jQuery('#kible .vakit_saati').html(response.veri.kiblesaati);
-					
-					loader.hide();
-					flipAyarlar();
-					sayaci_baslat();
-				} else {
-					loader.hide();
-					alert(eranvjs.hata_veri_cekilemedi);
-				}
+				loader.hide();
+				flipAyarlar();
+				sayaci_baslat();
+			} else {
+				loader.hide();
+				alert(eranvjs.hata_veri_cekilemedi);
 			}
-		});
+		}
+	});
 }
 
 function flipAyarlar()
